@@ -1,38 +1,21 @@
-# ========================================
 # Site Settings
-# ========================================
 title: "Sampson Ikechukwu Ewuzie"
 email: "sampson.ewuzie@outlook.com"
-description: >-
-  Power Systems Engineer | M.Eng Student | 
-  Sharing tutorials, research notes, and insights on power systems, 
-  smart grids, HVDC, renewable energy, and simulation tools.
-baseurl: "" # Leave empty for root[](https://username.github.io)
-url: "https://SampsonEwuzzy.github.io"
+description: "Power Systems Engineer | M.Eng Student | Smart Grids & Renewable Integration"
+baseurl: ""
+url: "https://sampsonewuzie.com"
 
-# ========================================
-# Author Info
-# ========================================
+# Author
 author:
   name: "Sampson Ikechukwu Ewuzie"
   email: "sampson.ewuzie@outlook.com"
-  bio: >-
-    M.Eng Power Engineering student sharing practical tutorials and insights 
-    on power systems, smart grids, and renewable energy integration using 
-    MATLAB, PSCAD, ETAP, and more.
 
-# ========================================
-# Social Links (for header/footer or SEO)
-# ========================================
+# Social
 social:
   linkedin: "https://www.linkedin.com/in/sampsonewuzie"
   github: "https://github.com/SampsonEwuzzy"
-  email: "mailto:sampson.ewuzie@outlook.com"
-  # twitter: "https://twitter.com/yourhandle"  # Uncomment if you have one
 
-# ========================================
-# Build Settings
-# ========================================
+# Build
 markdown: kramdown
 kramdown:
   input: GFM
@@ -40,85 +23,27 @@ kramdown:
   syntax_highlighter_opts:
     block:
       line_numbers: true
-    css_class: 'highlight'
 
-# Theme (we're using custom CSS, so keep minima as fallback)
-theme: minima
-
-# ========================================
 # Plugins
-# ========================================
 plugins:
   - jekyll-feed
   - jekyll-seo-tag
   - jekyll-paginate
-  - jekyll-sitemap  # Recommended for SEO
+  - jekyll-sitemap
 
-# ========================================
 # Pagination
-# ========================================
 paginate: 6
 paginate_path: "/blog/page:num/"
 
-# ========================================
-# Collections & Permalinks
-# ========================================
-collections:
-  posts:
-    output: true
-    permalink: /blog/:year/:month/:day/:title.html
+# Logo
+logo: /assets/images/profile.jpg
 
-# ========================================
-# Default Layouts
-# ========================================
-defaults:
-  - scope:
-      path: ""
-      type: "posts"
-    values:
-      layout: "post"
-      author: "Sampson Ikechukwu Ewuzie"
-      comments: true
-  - scope:
-      path: ""
-      type: "pages"
-    values:
-      layout: "page"
-
-# ========================================
-# SEO & Metadata
-# ========================================
-twitter:
-  username: # Add if you have a Twitter/X handle
-  card: summary_large_image
-
-logo: /assets/images/profile.jpg  # Optional: for SEO cards
-
-# ========================================
-# Timezone & Locale
-# ========================================
+# Timezone
 timezone: Africa/Lagos
 
-# ========================================
-# Exclude from Processing
-# ========================================
+# Exclude
 exclude:
   - Gemfile
   - Gemfile.lock
   - node_modules
-  - vendor/
-  - README.md
-  - .gitignore
-  - .jekyll-cache
-
-# ========================================
-# Include
-# ========================================
-include:
-  - _pages
-  - .well-known  # For future use (e.g. security.txt)
-
-# ========================================
-# Google Analytics (Optional)
-# ========================================
-# google_analytics: UA-XXXXX-X
+  - vendor
