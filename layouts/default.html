@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width,initial-scale=1" />
+		<title>{{ page.title | default: site.title }}</title>
+		<meta
+			name="description"
+			content="{{ page.excerpt | default: site.description }}"
+		/>
+		<link
+			rel="stylesheet"
+			href="{{ '/assets/css/style.css' | relative_url }}"
+		/>
+	</head>
+	<body>
+		{% include header.html %}
+
+		<main class="container">
+			<article class="content">{{ content }}</article>
+			<aside class="sidebar">
+				<section class="profile">
+					<img
+						src="{{ '/assets/images/profile-placeholder.jpg' | relative_url }}"
+						alt="profile"
+						class="profile-pic"
+					/>
+					<h3>{{ site.title }}</h3>
+					<p class="tagline">{{ site.description }}</p>
+					<a class="btn" href="{{ '/about.html' | relative_url }}">About me</a>
+					<a class="btn" href="{{ '/cv.pdf' | relative_url }}" download
+						>Download CV</a
+					>
+				</section>
+
+				<section class="latest-posts">
+					<h4>Latest posts</h4>
+					<ul>
+						{% for post in site.posts limit:5 %}
+						<li>
+							<a href="{{ post.url | relative_url }}">{{ post.title }}</a>
+						</li>
+						{% endfor %}
+					</ul>
+				</section>
+
+				<section class="follow">
+					<h4>Connect</h4>
+					<a href="{{ site.social.linkedin }}" target="_blank">LinkedIn</a> ·
+					<a href="{{ site.social.github }}" target="_blank">GitHub</a> ·
+					<a href="{{ site.social.email }}">Email</a>
+				</section>
+			</aside>
+		</main>
+
+		{% include footer.html %}
+	</body>
+</html>

@@ -1,0 +1,13 @@
+title: "Sampson Ikechukwu Ewuzie"
+email: "sampson.ewuzie@outlook.com"
+description: "Power Systems Engineer | M.Eng Student | Passionate about Power System Engineering and Smart Grids"
+baseurl: ""        # leave empty for user.github.io
+url: "https://SampsonEwuzzy.github.io"
+
+# Social links (used in footer/header)
+social:
+  linkedin: "https://www.linkedin.com/in/sampsonewuzie"
+  github: "https://github.com/SampsonEwuzzy"
+  email: "mailto:sampson.ewuzie@outlook.com"
+
+paginate: 5
