@@ -1,3 +1,4 @@
+
 ---
 layout: default
 title: "Blog"
@@ -10,7 +11,8 @@ permalink: /blog/
   <article>
     <h2><a href="{{ post.url | relative_url }}">{{ post.title }}</a></h2>
     <p class="meta">Published on {{ post.date | date: "%B %-d, %Y" }}</p>
-    <p>{{ post.excerpt | strip_html | truncate: 220 }}</p>
+    <p>{{ post.excerpt | strip_html | truncate: 200 }}</p>
   </article>
   <hr>
 {% endfor %}
+
