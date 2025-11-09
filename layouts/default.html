@@ -1,58 +1,153 @@
 <!DOCTYPE html>
 <html lang="en">
 	<head>
+		<!-- ========== CHARACTER SET & VIEWPORT ========== -->
 		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width,initial-scale=1" />
-		<title>{{ page.title | default: site.title }}</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+		<!-- ========== TITLE & SEO ========== -->
+		<title>
+			{% if page.title %}{{ page.title }} | {% endif %}{{ site.title }}
+		</title>
 		<meta
 			name="description"
-			content="{{ page.excerpt | default: site.description }}"
+			content="{{ page.excerpt | default: site.description | strip_html | truncate: 160 }}"
 		/>
+		:>
+		<link rel="canonical" href="{{ page.url | absolute_url }}" />
+
+		<!-- ========== FAVICONS ========== -->
+		<link
+			rel="icon"
+			href="{{ '/assets/favicon.ico' | relative_url }}"
+			type="image/x-icon"
+		/>
+		<link
+			rel="apple-touch-icon"
+			sizes="180x180"
+			href="{{ '/assets/favicon/apple-touch-icon.png' | relative_url }}"
+		/>
+		<link
+			rel="icon"
+			type="image/png"
+			sizes="32x32"
+			href="{{ '/assets/favicon/favicon-32x32.png' | relative_url }}"
+		/>
+		<link
+			rel="icon"
+			type="image/png"
+			sizes="16x16"
+			href="{{ '/assets/favicon/favicon-16x16.png' | relative_url }}"
+		/>
+
+		<!-- ========== CSS ========== -->
 		<link
 			rel="stylesheet"
 			href="{{ '/assets/css/style.css' | relative_url }}"
 		/>
+
+		<!-- ========== JEKYLL SEO TAG ========== -->
+		{% seo title=false %}
+
+		<!-- ========== OPEN GRAPH / SOCIAL ========== -->
+		<meta
+			property="og:title"
+			content="{{ page.title | default: site.title }}"
+		/>
+		<meta
+			property="og:description"
+			content="{{ page.excerpt | default: site.description | strip_html | truncate: 200 }}"
+		/>
+		<meta
+			property="og:type"
+			content="{% if page.layout == 'post' %}article{% else %}website{% endif %}"
+		/>
+		<meta property="og:url" content="{{ page.url | absolute_url }}" />
+		<meta property="og:site_name" content="{{ site.title }}" />
+		{% if page.image %}
+		<meta property="og:image" content="{{ page.image | absolute_url }}" />
+		{% elsif site.logo %}
+		<meta property="og:image" content="{{ site.logo | absolute_url }}" />
+		{% endif %}
+
+		<!-- ========== TWITTER CARDS ========== -->
+		<meta name="twitter:card" content="summary_large_image" />
+		{% if site.twitter.username %}
+		<meta name="twitter:site" content="@{{ site.twitter.username }}" />
+		{% endif %}
+		<meta
+			name="twitter:title"
+			content="{{ page.title | default: site.title }}"
+		/>
+		<meta
+			name="twitter:description"
+			content="{{ page.excerpt | default: site.description | strip_html | truncate: 200 }}"
+		/>
+		{% if page.image %}
+		<meta name="twitter:image" content="{{ page.image | absolute_url }}" />
+		{% elsif site.logo %}
+		<meta name="twitter:image" content="{{ site.logo | absolute_url }}" />
+		{% endif %}
+
+		<!-- ========== FEED ========== -->
+		<link
+			rel="alternate"
+			type="application/rss+xml"
+			title="{{ site.title }} RSS"
+			href="{{ '/feed.xml' | relative_url }}"
+		/>
+
+		<!-- ========== PREFETCH / DNS ========== -->
+		<link rel="dns-prefetch" href="https://formspree.io" />
+		<link rel="preconnect" href="https://formspree.io" crossorigin />
+
+		<!-- ========== THEME COLOR (for mobile browsers) ========== -->
+		<meta name="theme-color" content="#0b6fb3" />
+		<meta name="msapplication-TileColor" content="#0b6fb3" />
+
+		<!-- ========== DARK MODE SUPPORT (future) ========== -->
+		<meta name="color-scheme" content="light dark" />
 	</head>
+
 	<body>
+		<!-- ========== HEADER ========== -->
 		{% include header.html %}
 
-		<main class="container">
-			<article class="content">{{ content }}</article>
-			<aside class="sidebar">
-				<section class="profile">
-					<img
-						src="{{ '/assets/images/profile-placeholder.jpg' | relative_url }}"
-						alt="profile"
-						class="profile-pic"
-					/>
-					<h3>{{ site.title }}</h3>
-					<p class="tagline">{{ site.description }}</p>
-					<a class="btn" href="{{ '/about.html' | relative_url }}">About me</a>
-					<a class="btn" href="{{ '/cv.pdf' | relative_url }}" download
-						>Download CV</a
-					>
-				</section>
+		<!-- ========== MAIN CONTENT ========== -->
+		<main id="main-content">{{ content }}</main>
 
-				<section class="latest-posts">
-					<h4>Latest posts</h4>
-					<ul>
-						{% for post in site.posts limit:5 %}
-						<li>
-							<a href="{{ post.url | relative_url }}">{{ post.title }}</a>
-						</li>
-						{% endfor %}
-					</ul>
-				</section>
-
-				<section class="follow">
-					<h4>Connect</h4>
-					<a href="{{ site.social.linkedin }}" target="_blank">LinkedIn</a> ·
-					<a href="{{ site.social.github }}" target="_blank">GitHub</a> ·
-					<a href="{{ site.social.email }}">Email</a>
-				</section>
-			</aside>
-		</main>
-
+		<!-- ========== FOOTER ========== -->
 		{% include footer.html %}
+
+		<!-- ========== SCRIPTS (optional analytics, etc.) ========== -->
+		{% if site.google_analytics %}
+		<script
+			async
+			src="https://www.googletagmanager.com/gtag/js?id={{ site.google_analytics }}"
+		></script>
+		<script>
+			window.dataLayer = window.dataLayer || [];
+			function gtag() {
+				dataLayer.push(arguments);
+			}
+			gtag('js', new Date());
+			gtag('config', '{{ site.google_analytics }}', { anonymize_ip: true });
+		</script>
+		{% endif %}
+
+		<!-- Formspree AJAX (optional enhancement for contact form) -->
+		<script>
+			window.addEventListener('DOMContentLoaded', function () {
+				const forms = document.querySelectorAll(
+					'form[action^="https://formspree.io"]'
+				);
+				forms.forEach((form) => {
+					form.addEventListener('submit', function (e) {
+						const button = form.querySelector('button[type="submit"]');
+						if (button) button.disabled = true;
+					});
+				});
+			});
+		</script>
 	</body>
 </html>

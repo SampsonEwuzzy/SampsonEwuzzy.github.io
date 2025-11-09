@@ -1,32 +1,73 @@
 ---
 layout: default
-title: "Contact"
+title: Contact
+permalink: /contact/
 ---
 
-# Contact
+<section class="page-header">
+  <div class="wrap">
+    <h1>Get in Touch</h1>
+    <p class="lead">
+      Questions, collaboration ideas, or just want to say hi? Drop me a message.
+    </p>
+  </div>
+</section>
 
-You can reach me at **sampson.ewuzie@outlook.com**.
+<section class="contact-content">
+  <div class="wrap">
+    <div class="contact-grid">
+      <!-- Contact Info -->
+      <div class="contact-info">
+        <h3>Connect</h3>
+        <ul class="contact-list">
+          <li>📧 <a href="mailto:sampson.ewuzie@example.com">sampson.ewuzie@example.com</a></li>
+          <li>💼 <a href="https://linkedin.com/in/yourprofile" target="_blank">LinkedIn</a></li>
+          <li>🐙 <a href="https://github.com/yourusername" target="_blank">GitHub</a></li>
+          <li>✍️ <a href="https://twitter.com/yourhandle" target="_blank">X (Twitter)</a></li>
+        </ul>
+      </div>
 
-If you'd like to contact me directly, use this email or create a PR on GitHub.
+      <!-- Contact Form (Formspree) -->
+      <div class="contact-form">
+        <form action="https://formspree.io/f/your-form-id" method="POST">
+          <label>
+            Your Name
+            <input type="text" name="name" required placeholder="John Doe">
+          </label>
 
-<!-- Formspree example: replace `yourformid` with your Formspree form id if you want a working form -->
-<form action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
-  <label>
-    Your name:
-    <input type="text" name="name" required>
-  </label>
-  <br>
-  <label>
-    Your email:
-    <input type="email" name="_replyto" required>
-  </label>
-  <br>
-  <label>
-    Message:
-    <textarea name="message" required></textarea>
-  </label>
-  <br>
-  <button type="submit">Send</button>
-</form>
+          <label>
+            Email
+            <input type="email" name="_replyto" required placeholder="john@example.com">
+          </label>
 
-<p>Or email me directly: <a href="mailto:sampson.ewuzie@outlook.com">sampson.ewuzie@outlook.com</a></p>
+          <label>
+            Message
+            <textarea name="message" rows="5" required placeholder="What’s on your mind?"></textarea>
+          </label>
+
+          <button type="submit" class="btn btn-primary">Send Message</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+.contact-grid { display: grid; gap: 2rem; grid-template-columns: 1fr 1fr; }
+.contact-info ul { list-style: none; padding: 0; }
+.contact-info li { margin: .5rem 0; }
+.contact-info a { color: var(--accent); text-decoration: none; }
+.contact-info a:hover { text-decoration: underline; }
+.contact-form label { display: block; margin-top: 1rem; font-weight: 600; }
+.contact-form input,
+.contact-form textarea {
+  width: 100%; padding: .65rem; margin-top: .35rem;
+  border: 1px solid var(--border); border-radius: var(--radius);
+  font: inherit;
+}
+.contact-form button { margin-top: 1.5rem; }
+
+@media (max-width: 700px) {
+  .contact-grid { grid-template-columns: 1fr; }
+}
+</style>
