@@ -1,0 +1,109 @@
+---
+layout: default
+title: Blog
+permalink: /blog/
+---
+
+<section class="page-header">
+	<div class="wrap">
+		<h1>Blog</h1>
+		<p class="lead">Tutorials, reflections, and power systems insights.</p>
+	</div>
+</section>
+
+<section class="blog-list">
+	<div class="wrap">
+		{% if paginator.posts.size == 0 %}
+		<p>No posts yet. Check back soon!</p>
+		{% else %} {% for post in paginator.posts %}
+		<article class="post-card">
+			<h2><a href="{{ post.url | relative_url }}">{{ post.title }}</a></h2>
+			<p class="post-meta">
+				{{ post.date | date: "%B %d, %Y" }} {% if post.categories.size > 0 %} •
+				{{ post.categories | join: ", " }}{% endif %}
+			</p>
+			<p>{{ post.excerpt | strip_html | truncate: 240 }}</p>
+			<a class="read-more" href="{{ post.url | relative_url }}">Read more</a>
+		</article>
+		{% endfor %}
+
+		<!-- Pagination -->
+		{% if paginator.total_pages > 1 %}
+		<nav class="pagination">
+			{% if paginator.previous_page %}
+			<a
+				href="{{ paginator.previous_page_path | relative_url }}"
+				class="btn btn-outline"
+				>Newer</a
+			>
+			{% endif %}
+			<span>Page {{ paginator.page }} of {{ paginator.total_pages }}</span>
+			{% if paginator.next_page %}
+			<a
+				href="{{ paginator.next_page_path | relative_url }}"
+				class="btn btn-outline"
+				>Older</a
+			>
+			{% endif %}
+		</nav>
+		{% endif %} {% endif %}
+	</div>
+</section>
+
+<style>
+	.blog-list {
+		padding: 3rem 0;
+		background: #fafafa;
+	}
+	.post-card {
+		background: #fff;
+		padding: 1.5rem;
+		margin-bottom: 2rem;
+		border: 1px solid #e2e8f0;
+		border-radius: 8px;
+	}
+	.post-card h2 {
+		margin: 0 0 0.5rem;
+		font-size: 1.5rem;
+	}
+	.post-card h2 a {
+		color: #222;
+		text-decoration: none;
+	}
+	.post-card h2 a:hover {
+		color: #0b6fb3;
+	}
+	.post-meta {
+		font-size: 0.9rem;
+		color: #666;
+		margin-bottom: 0.75rem;
+	}
+	.read-more {
+		color: #0b6fb3;
+		font-weight: 600;
+		text-decoration: none;
+	}
+	.read-more:hover {
+		text-decoration: underline;
+	}
+	.pagination {
+		display: flex;
+		justify-content: space-between;
+		margin-top: 2rem;
+		flex-wrap: wrap;
+		gap: 1rem;
+		text-align: center;
+	}
+	.btn-outline {
+		padding: 0.5rem 1rem;
+		border: 1px solid #0b6fb3;
+		color: #0b6fb3;
+		text-decoration: none;
+		border-radius: 6px;
+		font-size: 0.9rem;
+	}
+	.btn-outline:hover {
+		background: #0b6fb3;
+		color: white;
+	}
+</style>
